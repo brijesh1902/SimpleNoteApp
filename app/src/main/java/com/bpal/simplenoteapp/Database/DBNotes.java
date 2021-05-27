@@ -2,16 +2,22 @@ package com.bpal.simplenoteapp.Database;
 
 public class DBNotes {
 
-    private String id, title, desc, time, user;
+    private String title, desc, time, user;
 
-    public DBNotes(String id, String title, String desc, String time, String user) {
-        this.id = id;
+    public DBNotes( String title, String desc, String time, String user) {
         this.title = title;
         this.desc = desc;
         this.time = time;
         this.user = user;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public String getTitle() {
         return title;
@@ -35,21 +41,5 @@ public class DBNotes {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 }

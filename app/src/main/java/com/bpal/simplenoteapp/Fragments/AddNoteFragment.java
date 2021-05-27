@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bpal.simplenoteapp.Database.Constant;
 import com.bpal.simplenoteapp.Database.DBHelper;
 import com.bpal.simplenoteapp.Database.DBNotes;
 import com.bpal.simplenoteapp.R;
@@ -41,7 +42,7 @@ public class AddNoteFragment extends Fragment {
         edt_dec = view.findViewById(R.id.id_desc);
         add = view.findViewById(R.id.btn_save);
 
-        dbHelper = new DBHelper(getContext());
+        dbHelper = new DBHelper(getActivity());
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,11 +60,12 @@ public class AddNoteFragment extends Fragment {
                     return ;
                 }
 
-                DBNotes notes = new DBNotes(time, Title, Desc, time, "Brijesh");
+                DBNotes notes = new DBNotes(Title, Desc, time, Constant.email);
 
-                dbHelper.addNote(notes);
+                dbHelper.addNotes(notes);
                 Toast.makeText(getContext(), "Note added Successfully.", Toast.LENGTH_SHORT).show();
                 loadFragment(new HomeFragment());
+
             }
         });
 

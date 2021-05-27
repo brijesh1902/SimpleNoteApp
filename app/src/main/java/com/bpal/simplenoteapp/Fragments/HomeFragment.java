@@ -1,7 +1,6 @@
 package com.bpal.simplenoteapp.Fragments;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,14 +9,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bpal.simplenoteapp.Adapter.NotesAdapter;
+import com.bpal.simplenoteapp.Database.Constant;
+import com.bpal.simplenoteapp.Database.DBHelper;
+import com.bpal.simplenoteapp.Database.DBNotes;
 import com.bpal.simplenoteapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
+    NotesAdapter adapter;
+    DBHelper dbHelper;
+    ArrayList<DBNotes> list;
     FloatingActionButton floatingActionButton;
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -47,6 +54,14 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        list = new ArrayList<>();
+
+        dbHelper = new DBHelper(getContext());
+        list = dbHelper.getNotes(Constant.email);
+        adapter = new NotesAdapter(getContext(), list);
+        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(adapter);
+
     }
 
     private boolean loadFragment(Fragment fragment) {
@@ -58,6 +73,5 @@ public class HomeFragment extends Fragment {
         }
         return false;
     }
-
 
 }
