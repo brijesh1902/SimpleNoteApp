@@ -101,11 +101,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             }
         });
 
-        DBNotes notes = data.get(position);
-
-        holder.title.setText(notes.getTitle());
-        holder.desc.setText(notes.getDesc());
-
     }
 
 
