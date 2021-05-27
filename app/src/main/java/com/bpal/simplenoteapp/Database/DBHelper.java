@@ -43,6 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void addNote(String title, String desc, String time) {
         SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues values = new ContentValues();
         values.put(TITLE, title);
         values.put(DESCRIPTION, desc);
