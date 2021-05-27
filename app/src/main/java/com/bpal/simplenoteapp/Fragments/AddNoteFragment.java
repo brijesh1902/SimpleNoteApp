@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bpal.simplenoteapp.Database.DBHelper;
+import com.bpal.simplenoteapp.Database.DBNotes;
 import com.bpal.simplenoteapp.R;
 
 public class AddNoteFragment extends Fragment {
@@ -58,8 +59,11 @@ public class AddNoteFragment extends Fragment {
                     return ;
                 }
 
-                dbHelper.addNote(Title, Desc, time);
+                DBNotes notes = new DBNotes(time, Title, Desc, time, "Brijesh");
+
+                dbHelper.addNote(notes);
                 Toast.makeText(getContext(), "Note added Successfully.", Toast.LENGTH_SHORT).show();
+                loadFragment(new HomeFragment());
             }
         });
 
